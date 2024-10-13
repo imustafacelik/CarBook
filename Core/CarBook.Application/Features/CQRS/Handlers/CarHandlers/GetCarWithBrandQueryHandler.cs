@@ -14,27 +14,26 @@ namespace CarBook.Application.Features.CQRS.Handlers.CarHandlers
     {
         private readonly ICarRepository _repository;
 
-        public GetCarWithBrandQueryHandler(ICarRepository carRepository)
+        public GetCarWithBrandQueryHandler(ICarRepository repository)
         {
-            _repository=carRepository;
+            _repository = repository;
         }
-
-        public List<GetCarWithBrandQueryResult>Handle()
+        public List<GetCarWithBrandQueryResult> Handle()
         {
             var values = _repository.GetCarsListWithBrands();
             return values.Select(x => new GetCarWithBrandQueryResult
             {
-                BrandName =x.Brand.Name,
+                BrandName = x.Brand.Name,
                 BrandId = x.BrandId,
                 BigImageUrl = x.BigImageUrl,
+                CarId = x.CarId,
                 CoverImageUrl = x.CoverImageUrl,
-                Fuel= x.Fuel,
+                Fuel = x.Fuel,
                 Km = x.Km,
-                Luggage= x.Luggage,
-                Model= x.Model,
+                Luggage = x.Luggage,
+                Model = x.Model,
                 Seat = x.Seat,
                 Transmission = x.Transmission
-
             }).ToList();
         }
     }
