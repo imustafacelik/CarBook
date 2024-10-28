@@ -21,7 +21,7 @@ namespace CarBook.WebUI.ViewComponents.FooterAddressComponents
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultFooterAddressDtos>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultFooterAddressDto>>(jsonData);
                 return View(values);
             }
             return View();
